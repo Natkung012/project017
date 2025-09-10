@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>เข้าสู่ระบบ - วัฒนธรรมไทย (Parallax)</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    html, body {
+      height: 100%;
+      font-family: 'Segoe UI', sans-serif;
+      overflow-x: hidden;
+    }
+
+    /* พื้นหลังแต่ละชั้น */
+    .parallax-layer {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100vh;
+      background-repeat: no-repeat;
+      background-size: cover;
+      background-position: center;
+      z-index: -1;
+      will-change: transform;
+    }
+
+    .layer-back {
+      background-image: url('https://images.unsplash.com/photo-1512820790803-83ca734da794');
+      z-index: -3;
+    }
+
+    .layer-middle {
+      background-image: url('https://images.unsplash.com/photo-1581090700227-1c74d0c41ebf');
+      opacity: 0.4;
+      z-index: -2;
+    }
+
+    .layer-front {
+      background-image: url('https://images.unsplash.com/photo-1578926375605-eaf7559b1458');
+      opacity: 0.2;
+      z-index: -1;
+    }
+
+    /* Login Container */
+    .content {
+      position: relative;
+      z-index: 1;
+      min-height: 200vh; /* เพื่อให้ scroll ได้ */
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding-top: 100px;
+    }
+
+    .login-container {
+      background-color: rgba(255, 255, 255, 0.95);
+      padding: 40px 30px;
+      border-radius: 10px;
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+      width: 100%;
+      max-width: 400px;
+    }
+
+    .login-container h2 {
+      text-align: center;
+      margin-bottom: 25px;
+      color: #333;
+    }
+
+    .login-container input[type="text"],
+    .login-container input[type="password"] {
+      width: 100%;
+      padding: 12px;
+      margin: 10px 0 20px 0;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+      font-size: 16px;
+    }
+
+    .login-container input[type="submit"] {
+      width: 100%;
+      background-color: #4CAF50;
+      color: white;
+      padding: 14px;
+      border: none;
+      border-radius: 5px;
+      font-size: 16px;
+      cursor: pointer;
+    }
+
+    .toggle-link {
+      text-align: center;
+      margin-top: 15px;
+      font-size: 14px;
+      cursor: pointer;
+      color: #007bff;
+    }
+
+    .toggle-link:hover {
+      text-decoration: underline;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Parallax Layers -->
+  <div class="parallax-layer layer-back"></div>
+  <div class="parallax-layer layer-middle"></div>
+  <div class="parallax-layer layer-front"></div>
+
+  <!-- Login Form -->
+  <div class="content">
+    <div class="login-container">
+      <h2 id="form-title">เข้าสู่ระบบ</h2>
+      <form id="loginForm">
+        <input type="text" id="username" placeholder="ชื่อผู้ใช้" required />
+        <input type="password" id="password" placeholder="รหัสผ่าน" required />
+        <input type="submit" id="submitBtn" value="เข้าสู่ระบบ" />
+      </form>
+      <div class="toggle-link" id="toggleForm">ยังไม่มีบัญชี? สมัครสมาชิก</div>
+    </div>
+  </div>
+
+  <script>
+    const layers = document.querySelectorAll(".parallax-layer");
+
+    window.addEventListener("scroll", () => {
+      let scrollTop = window.pageYOffset;
+
+      layers.forEach((layer, index) => {
+        const speed = (index + 1) * 0.2;
+        layer.style.transform = `translateY(${scrollTop * speed}px)`;
+      });
+    });
+
+    // Login/Register toggle
+    const form = document.getElementById("loginForm");
+    const toggleLink = document.getElementById("toggleForm");
+    const formTitle = document.getElementById("form-title");
+    const submitBtn = document.getElementById("submitBtn");
+    let isLogin = true;
+
+    toggleLink.addEventListener("click", () => {
+      isLogin = !isLogin;
+      formTitle.textContent = isLogin ? "เข้าสู่ระบบ" : "สมัครสมาชิก";
+      submitBtn.value = isLogin ? "เข้าสู่ระบบ" : "สมัครสมาชิก";
+      toggleLink.textContent = isLogin ? "ยังไม่มีบัญชี? สมัครสมาชิก" : "มีบัญชีอยู่แล้ว? เข้าสู่ระบบ";
+    });
+
+    form.addEventListener("submit", function (e) {
+      e.preventDefault();
+      const username = document.getElementById("username").value;
+      const password = document.getElementById("password").value;
+
+      if (isLogin) {
+        const savedUser = localStorage.getItem(username);
+        if (savedUser && JSON.parse(savedUser).password === password) {
+          localStorage.setItem("currentUser", username);
+          alert("เข้าสู่ระบบสำเร็จ!");
+          window.location.href = "test4.html";
+        } else {
+          alert("ชื่อผู้ใช้หรือรหัสผ่านไม่ถูกต้อง");
+        }
+      } else {
+        if (localStorage.getItem(username)) {
+          alert("ชื่อผู้ใช้นี้มีอยู่แล้ว กรุณาใช้ชื่ออื่น");
+        } else {
+          const userData = { username, password };
+          localStorage.setItem(username, JSON.stringify(userData));
+          alert("สมัครสมาชิกสำเร็จ! กรุณาเข้าสู่ระบบ");
+
+          isLogin = true;
+          formTitle.textContent = "เข้าสู่ระบบ";
+          submitBtn.value = "เข้าสู่ระบบ";
+          toggleLink.textContent = "ยังไม่มีบัญชี? สมัครสมาชิก";
+        }
+      }
+    });
+  </script>
+</body>
+</html>

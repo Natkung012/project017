@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>หน้าแรก - วัฒนธรรมไทย</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Sarabun', sans-serif;
+    }
+
+    body {
+      background-image: url('immages/book.jpg');
+      background-size: cover;
+      background-position: center;
+      background-repeat: no-repeat;
+      color: #f4a45fc9;
+      display: flex;
+      flex-direction: column;
+      min-height: 100vh;
+    }
+
+    header {
+      background-color: rgb(223, 124, 62);
+      padding: 20px 30px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+    }
+
+    .logo-container {
+      display: flex;
+      align-items: center;
+      gap: 15px;
+    }
+
+    .logo-container img {
+      width: 50px;
+      height: auto;
+    }
+
+    .logo-container h1 {
+      font-size: 28px;
+      font-weight: 700;
+      color: #ffffff;
+    }
+
+    .username {
+      font-size: 18px;
+      color: #ffffff;
+      font-weight: 500;
+      margin-right: 15px;
+    }
+
+    .logout-btn {
+      background-color: #e63946;
+      color: white;
+      border: none;
+      padding: 10px 20px;
+      border-radius: 5px;
+      cursor: pointer;
+      transition: background 0.3s;
+    }
+
+    .logout-btn:hover {
+      background-color: #c1121f;
+    }
+
+    nav {
+      display: flex;
+      justify-content: center;
+      background-color: rgb(219, 135, 61);
+      flex-wrap: wrap;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+    }
+
+    nav a {
+      color: white;
+      text-decoration: none;
+      padding: 15px 20px;
+      font-size: 18px;
+      transition: background-color 0.3s ease, transform 0.3s ease;
+    }
+
+    nav a:hover {
+      background-color: rgba(255, 255, 255, 0.3);
+      transform: scale(1.05);
+    }
+
+    .container {
+      padding: 50px;
+      text-align: center;
+      background-color: rgb(218, 112, 18);
+      margin: 50px auto;
+      max-width: 800px;
+      border-radius: 10px;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+      flex: 1;
+    }
+
+    .container h2 {
+      font-size: 32px;
+      margin-bottom: 20px;
+      color: #ff9800;
+    }
+
+    .container p {
+      font-size: 18px;
+      line-height: 1.8;
+      margin-bottom: 30px;
+      color: #fff;
+    }
+
+    .button-group a {
+      background-color: #ff9800;
+      padding: 12px 25px;
+      color: white;
+      border-radius: 5px;
+      text-decoration: none;
+      margin: 0 10px;
+      display: inline-block;
+      transition: background 0.3s ease, transform 0.3s ease;
+    }
+
+    .button-group a:hover {
+      background-color: #e68900;
+      transform: scale(1.05);
+    }
+
+    footer {
+      background-color: #d2691e;
+      color: white;
+      text-align: center;
+      padding: 15px 0;
+    }
+
+    footer a {
+      color: #ffffff;
+      text-decoration: none;
+      margin: 0 5px;
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <div class="logo-container">
+      <img src="immages/Logo.png" alt="logo.png">
+      <h1>MASUKSA</h1>
+    </div>
+    <div style="display: flex; align-items: center;">
+      <span class="username" id="usernameDisplay">สวัสดี , ผู้ใช้</span>
+      <button class="logout-btn" id="logoutBtn">ออกจากระบบ</button>
+    </div>
+  </header>
+
+  <nav>
+    <a href="content1.html">วัฒนธรรมไทย</a>
+    <a href="content2.html">ประเพณีที่สำคัญ</a>
+    <a href="content3.html">ความสำคัญ</a>
+    <a href="content4.html">การอนุรักษ์</a>
+  </nav>
+
+  <div class="container">
+    <h2 id="welcomeText"></h2>
+    <p>เว็บไซต์นี้จัดทำขึ้นเพื่อให้ความรู้เกี่ยวกับวัฒนธรรมและประเพณีไทย  
+      ซึ่งเป็นรากฐานที่สำคัญของสังคมไทย ที่ควรค่าแก่การเรียนรู้และอนุรักษ์ไว้ให้คนรุ่นหลัง</p>
+
+    <div class="button-group">
+      <a href="content0.html">สำรวจวัฒนธรรม</a>
+      <a href="content00.html">ดูประเพณีไทย</a>
+    </div>
+  </div>
+
+  <footer style="background-color: #d2691e; color: rgb(0, 0, 0); text-align: center; padding: 15px 0; margin-top: 20px;">
+    ช่องทางติดต่อ:
+    <a href="https://www.facebook.com/PhurinatAtloed" target="_blank" style="color: #ffffff; text-decoration: none; margin: 0 5px;">
+        FB : Phurinat Atloed
+    </a> |
+    <a href="https://www.instagram.com/phu_rinat09" target="_blank" style="color: #ffffff; text-decoration: none; margin: 0 5px;">
+        IG : phu_rinat09
+    </a>
+  </footer>
+
+  <script>
+
+    const currentUser = localStorage.getItem("currentUser");
+    const usernameDisplay = document.getElementById("usernameDisplay");
+    const logoutBtn = document.getElementById("logoutBtn");
+
+    if (currentUser) {
+      usernameDisplay.textContent = `สวัสดี, ${currentUser}`;
+    } else {
+      usernameDisplay.textContent = `ยินดีต้อนรับ`;
+    }
+
+    logoutBtn.addEventListener("click", () => {
+      localStorage.removeItem("currentUser");
+      alert("ออกจากระบบสำเร็จ");
+      window.location.href = "index.html";
+    });
+
+    const text = "ยินดีต้อนรับสู่เว็บไซต์ MASUKSA";
+    let index = 0;
+    const welcomeText = document.getElementById("welcomeText");
+
+    function typeEffect() {
+      if (index < text.length) {
+        welcomeText.textContent += text.charAt(index);
+        index++;
+        setTimeout(typeEffect, 100);
+      }
+    }
+
+    welcomeText.textContent = "";
+    typeEffect();
+  </script>
+
+</body>
+</html>
